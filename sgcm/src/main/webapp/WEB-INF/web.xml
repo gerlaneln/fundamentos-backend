@@ -19,4 +19,14 @@
     <url-pattern>/primeiroServlet</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>ExibeDados</servlet-name>
+    <servlet-class>br.ufac.sgcm.ExibeDados</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ExibeDados</servlet-name>
+    <url-pattern>/exibeDados</url-pattern>
+  </servlet-mapping>
+
 </web-app>

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.ufac.sgcm.model.Unidade;
@@ -20,8 +21,24 @@ public class UnidadeDao implements IDao<Unidade>{
 
     @Override
     public List<Unidade> getAll() {
-        // TODO Auto-generated method stub
-        return null;
+        List<Unidade> listaRegistros = new ArrayList<>();
+        String sql = "SELECT * FROM unidade";
+
+        try {
+            ps = conexao.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                Unidade registro = new Unidade();
+                registro.setId(rs.getLong("id"));
+                registro.setNome(rs.getString("nome"));
+                registro.setEndereco(rs.getString("endereco"));
+                listaRegistros.add(registro);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return listaRegistros;
     }
 
     @Override

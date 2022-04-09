@@ -4,14 +4,20 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.ufac.sgcm.dao.ProfissionalDao;
+import br.ufac.sgcm.model.Especialidade;
 import br.ufac.sgcm.model.Profissional;
+import br.ufac.sgcm.model.Unidade;
 
 public class ProfissionalController implements IController<Profissional>{
 
     private ProfissionalDao dao;
+    private EspecialidadeController especialidadeController;
+    private UnidadeController unidadeController;
 
     public ProfissionalController(){
         dao = new ProfissionalDao();
+        especialidadeController = new EspecialidadeController();
+        unidadeController = new UnidadeController();
     }
 
     @Override
@@ -44,5 +50,20 @@ public class ProfissionalController implements IController<Profissional>{
     public int delete(Long id) throws SQLException {
         return dao.delete(id);
     }
+
+    public List<Especialidade> getEspecialidades() throws SQLException{
+        return especialidadeController.getAll();
+    }
+
+    public Especialidade getEspecialidade(Long id) throws SQLException{
+        return especialidadeController.getById(id);
+    }
     
+    public List<Unidade> getUnidades() throws SQLException{
+        return unidadeController.getAll();
+    }
+
+    public Unidade getUnidade(Long id) throws SQLException{
+        return unidadeController.getById(id);
+    }
 }

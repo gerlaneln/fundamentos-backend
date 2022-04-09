@@ -9,6 +9,12 @@
     String alertaMensagem = null;
     String alertaTipo = null;
 
+    String paramAlerta = request.getParameter("alertaMensagem");
+    if(paramAlerta != null && !paramAlerta.isEmpty()){
+        alertaMensagem = request.getParameter("alertaMensagem");
+        alertaTipo = request.getParameter("alertaTipo");
+    }
+
     String paramExcluir = request.getParameter("excluir");
     if(paramExcluir != null && !paramExcluir.isEmpty()){
 

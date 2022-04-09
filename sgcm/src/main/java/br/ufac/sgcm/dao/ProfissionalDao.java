@@ -72,9 +72,42 @@ public class ProfissionalDao implements IDao<Profissional>{
     }
 
     @Override
-    public List<Profissional> getByAll(String termoBusca) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Profissional> getByAll(String termoBusca) throws SQLException {
+        List<Profissional> registros = new ArrayList<>();
+        String sql = "SELECT p.*, e.nome, u.nome FROM profissional p "+
+        "LEFT JOIN especialidade e ON e.id = p.especialidade_id "+
+        "LEFT JOIN unidade u ON u.id = p.unidade_id "+
+        " WHERE p.nome LIKE  ? " +
+        "OR registro_conselho LIKE ? "+
+        "OR e.nome LIKE ? "+
+        "OR u.nome LIKE ? "+
+        "OR telefone LIKE ? "+
+        "OR email LIKE ?";
+  
+        ps = conexao.prepareStatement(sql);
+        ps.setString(1, "%" + termoBusca +"%");
+        ps.setString(2, "%" + termoBusca +"%");
+        ps.setString(3, "%" + termoBusca +"%");
+        ps.setString(4, "%" + termoBusca +"%");
+        ps.setString(5, "%" + termoBusca +"%");
+        ps.setString(6, "%" + termoBusca +"%");
+        rs = ps.executeQuery();
+
+        while (rs.next()) {
+
+            Profissional registro = new Profissional();
+            registro.setId(rs.getLong("id"));
+            registro.setNome(rs.getString("nome"));
+            registro.setRegistroConselho(rs.getString("registro_conselho"));
+            registro.setEspecialidade(especialidadeDao.getById(rs.getLong("especialidade_id")));
+            registro.setUnidade(unidadeDao.getById(rs.getLong("unidade_id")));
+            registro.setEmail(rs.getString("email"));
+            registro.setTelefone(rs.getString("telefone"));
+
+            registros.add(registro);
+        }
+
+        return registros;
     }
 
     @Override

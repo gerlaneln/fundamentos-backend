@@ -31,7 +31,7 @@ public class ProfissionalController implements IController<Profissional>{
     }
 
     @Override
-    public List<Profissional> getByAll(String termoBusca) {
+    public List<Profissional> getByAll(String termoBusca) throws SQLException {
         return dao.getByAll(termoBusca);
     }
 

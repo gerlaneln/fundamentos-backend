@@ -35,7 +35,13 @@
         
     }
 
-    List<Profissional> registros = controller.getAll();
+    List<Profissional> registros;
+    String paramBusca = request.getParameter("busca");
+    if(paramBusca != null && !paramBusca.isEmpty()){
+        registros = controller.getByAll(paramBusca);
+    }else{
+        registros = controller.getAll();
+    }
 %>
 
 <!DOCTYPE html>

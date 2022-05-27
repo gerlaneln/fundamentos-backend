@@ -6,11 +6,11 @@ import java.util.List;
 import br.ufac.sgcm.dao.EspecialidadeDao;
 import br.ufac.sgcm.model.Especialidade;
 
-public class EspecialidadeController implements IController<Especialidade>{
+public class EspecialidadeController implements IController<Especialidade> {
 
     private EspecialidadeDao dao;
 
-    public EspecialidadeController(){
+    public EspecialidadeController() {
         dao = new EspecialidadeDao();
     }
 
@@ -25,7 +25,7 @@ public class EspecialidadeController implements IController<Especialidade>{
     }
 
     @Override
-    public List<Especialidade> getByAll(String termoBusca) {
+    public List<Especialidade> getByAll(String termoBusca) throws SQLException {
         return dao.getByAll(termoBusca);
     }
 

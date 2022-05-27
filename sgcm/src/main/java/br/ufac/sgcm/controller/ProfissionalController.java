@@ -8,13 +8,13 @@ import br.ufac.sgcm.model.Especialidade;
 import br.ufac.sgcm.model.Profissional;
 import br.ufac.sgcm.model.Unidade;
 
-public class ProfissionalController implements IController<Profissional>{
+public class ProfissionalController implements IController<Profissional> {
 
     private ProfissionalDao dao;
     private EspecialidadeController especialidadeController;
     private UnidadeController unidadeController;
 
-    public ProfissionalController(){
+    public ProfissionalController() {
         dao = new ProfissionalDao();
         especialidadeController = new EspecialidadeController();
         unidadeController = new UnidadeController();
@@ -38,9 +38,9 @@ public class ProfissionalController implements IController<Profissional>{
     @Override
     public int save(Profissional objeto) throws SQLException {
         int registrosAfetados = 0;
-        if(objeto.getId() == null){
+        if (objeto.getId() == null) {
             registrosAfetados = dao.insert(objeto);
-        }else{
+        } else {
             registrosAfetados = dao.update(objeto);
         }
         return registrosAfetados;
@@ -51,19 +51,20 @@ public class ProfissionalController implements IController<Profissional>{
         return dao.delete(id);
     }
 
-    public List<Especialidade> getEspecialidades() throws SQLException{
+    public List<Especialidade> getEspecialidades() throws SQLException {
         return especialidadeController.getAll();
     }
 
-    public Especialidade getEspecialidade(Long id) throws SQLException{
+    public Especialidade getEspecialidade(Long id) throws SQLException {
         return especialidadeController.getById(id);
     }
-    
-    public List<Unidade> getUnidades() throws SQLException{
+
+    public List<Unidade> getUnidades() throws SQLException {
         return unidadeController.getAll();
     }
 
-    public Unidade getUnidade(Long id) throws SQLException{
+    public Unidade getUnidade(Long id) throws SQLException {
         return unidadeController.getById(id);
     }
+    
 }

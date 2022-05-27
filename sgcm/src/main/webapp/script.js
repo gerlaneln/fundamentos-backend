@@ -8,7 +8,7 @@ window.onload = () => {
 
     let botoesRedirect = document.querySelectorAll("input[data-redirect]");
     botoesRedirect.forEach(item => {
-        item.addEventListener('click', () =>{
+        item.addEventListener('click', () => {
             let destino = item.getAttribute("data-redirect");
             window.location.href = destino;
         });
@@ -16,8 +16,8 @@ window.onload = () => {
 
     let botoesExcluir = document.querySelectorAll("a.botao.excluir");
     botoesExcluir.forEach(item => {
-        item.addEventListener('click', evento =>{
-            if(!confirm("Deseja realmente excluir?")){
+        item.addEventListener('click', evento => {
+            if (!confirm("Deseja realmente excluir?")) {
                 evento.preventDefault();
             }
         });

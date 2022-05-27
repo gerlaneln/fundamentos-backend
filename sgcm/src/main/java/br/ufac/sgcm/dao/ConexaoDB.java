@@ -25,14 +25,12 @@ public class ConexaoDB {
         }
 
     }
-    
-    public static Connection getConexao(){
 
-        if(instanciaConexaoDB == null){
+    public static Connection getConexao() {
+        if (instanciaConexaoDB == null) {
             instanciaConexaoDB = new ConexaoDB();
         }
         return instanciaConexaoDB.conexao;
-
     }
-
+    
 }
